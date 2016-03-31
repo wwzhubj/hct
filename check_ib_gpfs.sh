@@ -1,5 +1,6 @@
 #!/bin/bash
 # check ib and gpfs status.
+# it's testing for git
 
 gpfs_server=10.10.10.102
 ping $gpfs_server -c 1 -W 1 2>&1 > /dev/null
