@@ -1,8 +1,11 @@
 #!/bin/bash
 # check ib and gpfs status.
-# it's testing for git
 
-gpfs_server=10.10.10.102
+echo "please input gpfs server's ip address:"
+read gpfs_server
+echo "You entered: $gpfs_server"
+
+#gpfs_server=172.17.0.37
 ping $gpfs_server -c 1 -W 1 2>&1 > /dev/null
 if [ $? == 0 ]
  then 
@@ -12,6 +15,8 @@ if [ $? == 0 ]
       then
         printf "gpfs has been start up.\n"
       else
+      #stop iptables service
+        service iptable stop 2>&1 > /dev/null 
         /usr/lpp/mmfs/bin/mmstartup
         if [ $? == 0 ]
           then
